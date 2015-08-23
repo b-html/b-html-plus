@@ -62,7 +62,7 @@ describe 'render', ->
       rendered = render @parsed, @context
       assert.deepEqual rendered, @expected
 
-  context 'b-html', ->
+  context '@b-html', ->
     context 'context.message', ->
       beforeEach ->
         @parsed = [
@@ -139,7 +139,7 @@ describe 'render', ->
         rendered = render @parsed, @context
         assert.deepEqual rendered, @expected
 
-  context 'b-repeat', ->
+  context '@b-repeat', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
@@ -225,7 +225,7 @@ describe 'render', ->
         rendered = render @parsed, @context
         assert.deepEqual rendered, @expected
 
-  context 'b-text', ->
+  context '@b-text', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
