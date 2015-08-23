@@ -46,4 +46,6 @@ renderElement = (element, context) ->
   [{ name, attributes, children }]
 
 module.exports = (elements, context) ->
-  renderElement elements[0], context
+  elements.reduce (c, e) ->
+    c.concat renderElement e, context
+  , []

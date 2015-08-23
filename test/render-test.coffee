@@ -2,11 +2,61 @@ assert = require 'power-assert'
 render = require './render'
 
 describe 'render', ->
-  context '"text"', ->
+  context 'text', ->
     beforeEach ->
       @parsed = ['text']
       @context = {}
       @expected = ['text']
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
+
+  context 'element', ->
+    beforeEach ->
+      @parsed = [
+        name: 'p'
+        attributes: [
+          name: 'b-text'
+          value: 'user.name'
+        ]
+        children: []
+      ]
+      @context =
+        user:
+          name: 'bouzuya'
+      @expected = [
+        name: 'p'
+        attributes: []
+        children: ['bouzuya']
+      ]
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
+
+  context 'elements', ->
+    beforeEach ->
+      @parsed = [
+        'text'
+      ,
+        name: 'p'
+        attributes: [
+          name: 'b-text'
+          value: 'user.name'
+        ]
+        children: []
+      ]
+      @context =
+        user:
+          name: 'bouzuya'
+      @expected = [
+        'text'
+      ,
+        name: 'p'
+        attributes: []
+        children: ['bouzuya']
+      ]
 
     it 'works', ->
       rendered = render @parsed, @context
