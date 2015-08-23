@@ -90,33 +90,87 @@ describe 'render', ->
         assert.deepEqual rendered, @expected
 
   context 'b-repeat', ->
-    beforeEach ->
-      @parsed = [
-        name: 'p'
-        attributes: [
-          name: 'b-repeat'
-          value: 'item in list'
+    context 'simple', ->
+      beforeEach ->
+        @parsed = [
+          name: 'p'
+          attributes: [
+            name: 'b-repeat'
+            value: 'item in list'
+          ,
+            name: 'b-html'
+            value: 'item'
+          ]
+          children: []
+        ]
+        @context =
+          list: [
+            'item1'
+            'item2'
+          ]
+        @expected = [
+          name: 'p'
+          attributes: []
+          children: ['item1']
         ,
-          name: 'b-html'
-          value: 'item'
+          name: 'p'
+          attributes: []
+          children: ['item2']
         ]
-        children: []
-      ]
-      @context =
-        list: [
-          'item1'
-          'item2'
-        ]
-      @expected = [
-        name: 'p'
-        attributes: []
-        children: ['item1']
-      ,
-        name: 'p'
-        attributes: []
-        children: ['item2']
-      ]
 
-    it 'works', ->
-      rendered = render @parsed, @context
-      assert.deepEqual rendered, @expected
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
+
+    context 'complex', ->
+      beforeEach ->
+        @parsed = [
+          name: 'ul'
+          attributes: []
+          children: [
+            name: 'li'
+            attributes: [
+              name: 'b-repeat'
+              value: 'user in users'
+            ]
+            children: [
+              name: 'span'
+              attributes: [
+                name: 'b-html'
+                value: 'user.name'
+              ]
+              children: []
+            ]
+          ]
+        ]
+        @context =
+          users: [
+            name: 'bouzuya'
+          ,
+            name: 'emanon001'
+          ]
+        @expected = [
+          name: 'ul'
+          attributes: []
+          children: [
+            name: 'li'
+            attributes: []
+            children: [
+              name: 'span'
+              attributes: []
+              children: ['bouzuya']
+            ]
+          ,
+            name: 'li'
+            attributes: []
+            children: [
+              name: 'span'
+              attributes: []
+              children: ['emanon001']
+            ]
+          ]
+        ]
+
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
