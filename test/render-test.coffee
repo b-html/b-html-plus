@@ -63,7 +63,7 @@ describe 'render', ->
       assert.deepEqual rendered, @expected
 
   context '@b-html', ->
-    context 'context.message', ->
+    context 'simple', ->
       beforeEach ->
         @parsed = [
           name: 'p'
@@ -85,30 +85,7 @@ describe 'render', ->
         rendered = render @parsed, @context
         assert.deepEqual rendered, @expected
 
-    context 'context.user.name', ->
-      beforeEach ->
-        @parsed = [
-          name: 'p'
-          attributes: [
-            name: 'b-html'
-            value: 'user.name'
-          ]
-          children: []
-        ]
-        @context =
-          user:
-            name: '<b>bouzuya</b>'
-        @expected = [
-          name: 'p'
-          attributes: []
-          children: ['<b>bouzuya</b>']
-        ]
-
-      it 'works', ->
-        rendered = render @parsed, @context
-        assert.deepEqual rendered, @expected
-
-    context 'children', ->
+    context 'complex', ->
       beforeEach ->
         @parsed = [
           name: 'p'
