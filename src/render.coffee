@@ -1,5 +1,12 @@
 # Array<Element> -> Array<Element> | Element | string
 
+escapeHtml = (html) ->
+  html
+  .replace /&/g, '&amp;'
+  .replace /</g, '&lt;'
+  .replace />/g, '&gt;'
+  .replace /"/g, '&quot;'
+
 renderElements = (element, context) ->
   name = element.name
   children = element.children.slice()
@@ -27,6 +34,10 @@ renderElement = (element, context) ->
       when 'b-html'
         html = attr.value.split(/\./).reduce(((c, key) -> c[key]), context)
         children = [html]
+      when 'b-text'
+        html = attr.value.split(/\./).reduce(((c, key) -> c[key]), context)
+        text = escapeHtml html
+        children = [text]
       else
         attributes.push attr
   children = children.reduce (c, child) ->
