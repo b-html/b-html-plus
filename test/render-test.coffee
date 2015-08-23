@@ -88,3 +88,35 @@ describe 'render', ->
       it 'works', ->
         rendered = render @parsed, @context
         assert.deepEqual rendered, @expected
+
+  context 'b-repeat', ->
+    beforeEach ->
+      @parsed = [
+        name: 'p'
+        attributes: [
+          name: 'b-repeat'
+          value: 'item in list'
+        ,
+          name: 'b-html'
+          value: 'item'
+        ]
+        children: []
+      ]
+      @context =
+        list: [
+          'item1'
+          'item2'
+        ]
+      @expected = [
+        name: 'p'
+        attributes: []
+        children: ['item1']
+      ,
+        name: 'p'
+        attributes: []
+        children: ['item2']
+      ]
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
