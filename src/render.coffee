@@ -11,6 +11,9 @@ renderElement = (element, context) ->
         children = [html]
       else
         attributes.push attr
+  children = children.reduce (c, child) ->
+    c.concat renderElement child, context
+  , []
   [{ name, attributes, children }]
 
 module.exports = (elements, context) ->
