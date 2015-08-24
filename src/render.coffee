@@ -14,6 +14,10 @@ renderElement = (element, context) ->
   return [element] if typeof element is 'string'
   if element.attributes.some((i) -> i.name is 'b-repeat')
     return renderElements element, context
+  if element.attributes.some((i) -> i.name is 'b-if')
+    attr = element.attributes.filter((i) -> i.name is 'b-if')[0]
+    value = get attr.value, context
+    return [] unless value
   name = element.name
   children = element.children.slice()
   attributes = []
@@ -28,6 +32,9 @@ renderElement = (element, context) ->
       when 'b-html'
         html = get attr.value, context
         children = [html]
+      when 'b-if'
+        # do nothing
+        null
       when 'b-text'
         html = get attr.value, context
         text = escapeHtml html

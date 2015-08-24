@@ -176,6 +176,77 @@ describe 'render', ->
         rendered = render @parsed, @context
         assert.deepEqual rendered, @expected
 
+  context '@b-if', ->
+    context 'simple', ->
+      beforeEach ->
+        @parsed = [
+          name: 'p'
+          attributes: [
+            name: 'b-if'
+            value: 'isShow'
+          ]
+          children: []
+        ]
+        @context =
+          isShow: false
+        @expected = []
+
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
+
+    context 'complex', ->
+      beforeEach ->
+        @parsed = [
+          name: 'ul'
+          attributes: []
+          children: [
+            name: 'li'
+            attributes: [
+              name: 'b-if'
+              value: 'item.visible'
+            ,
+              name: 'b-repeat'
+              value: 'item in list'
+            ,
+              name: 'b-text'
+              value: 'item.name'
+            ]
+            children: []
+          ]
+        ]
+        @context =
+          list: [
+            name: 'show1'
+            visible: true
+          ,
+            name: 'hide1'
+            visible: false
+          ,
+            name: 'show2'
+            visible: true
+          ,
+            name: 'hide2'
+            visible: false
+          ]
+        @expected = [
+          name: 'ul'
+          attributes: []
+          children: [
+            name: 'li'
+            attributes: []
+            children: ['show1']
+          ,
+            name: 'li'
+            attributes: []
+            children: ['show2']
+          ]
+        ]
+
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
+
   context '@b-repeat', ->
     context 'simple', ->
       beforeEach ->
