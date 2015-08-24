@@ -16,6 +16,12 @@ renderElement = (element, context) ->
   attributes = []
   element.attributes.forEach (attr) ->
     switch attr.name
+      when 'b-attr'
+        attr.value.split(/\s*,\s*/).forEach (a) ->
+          [n, v] = a.split /\s*:\s*/
+          attributes.push
+            name: n
+            value: v.split(/\./).reduce(((c, key) -> c[key]), context)
       when 'b-html'
         html = attr.value.split(/\./).reduce(((c, key) -> c[key]), context)
         children = [html]

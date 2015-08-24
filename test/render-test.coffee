@@ -62,6 +62,66 @@ describe 'render', ->
       rendered = render @parsed, @context
       assert.deepEqual rendered, @expected
 
+  context '@b-attr', ->
+    context 'simple', ->
+      beforeEach ->
+        @parsed = [
+          name: 'canvas'
+          attributes: [
+            name: 'b-attr'
+            value: 'width: w, height: h'
+          ]
+          children: []
+        ]
+        @context =
+          w: 765
+          h: 876
+        @expected = [
+          name: 'canvas'
+          attributes: [
+            name: 'width'
+            value: '765'
+          ,
+            name: 'height'
+            value: '876'
+          ]
+          children: []
+        ]
+
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
+
+    context 'complex', ->
+      beforeEach ->
+        @parsed = [
+          name: 'canvas'
+          attributes: [
+            name: 'b-attr'
+            value: 'width: image.width, height: image.height'
+          ]
+          children: []
+        ]
+        @context =
+          image:
+            width: 12
+            height: 24
+        @expected = [
+          name: 'canvas'
+          attributes: [
+            name: 'width'
+            value: '12'
+          ,
+            name: 'height'
+            value: '24'
+          ]
+          children: []
+        ]
+
+      it 'works', ->
+        rendered = render @parsed, @context
+        assert.deepEqual rendered, @expected
+
   context '@b-html', ->
     context 'simple', ->
       beforeEach ->
