@@ -7,6 +7,9 @@ escapeHtml = (html) ->
   .replace />/g, '&gt;'
   .replace /"/g, '&quot;'
 
+get = (key, context) ->
+  key.split(/\./).reduce(((c, key) -> c[key]), context)
+
 renderElement = (element, context) ->
   return [element] if typeof element is 'string'
   if element.attributes.some((i) -> i.name is 'b-repeat')
@@ -21,12 +24,12 @@ renderElement = (element, context) ->
           [n, v] = a.split /\s*:\s*/
           attributes.push
             name: n
-            value: v.split(/\./).reduce(((c, key) -> c[key]), context)
+            value: get v, context
       when 'b-html'
-        html = attr.value.split(/\./).reduce(((c, key) -> c[key]), context)
+        html = get attr.value, context
         children = [html]
       when 'b-text'
-        html = attr.value.split(/\./).reduce(((c, key) -> c[key]), context)
+        html = get attr.value, context
         text = escapeHtml html
         children = [text]
       else
