@@ -28,9 +28,9 @@ html === '<ul><li>bouzuya</li><li>emanon001</li></ul>';
 ## Syntax
 
 - `b-attr` ... attributes (e.g. `@b-attr width: w, height: h`)
-- `b-html` ... `innerHTML`
-- `b-repeat <item> in <list>` ... repeat
-- `b-text` ... `innerText`
+- `b-html` ... `innerHTML` (e.g. `@b-html html`)
+- `b-repeat <item> in <list>` ... repeat (e.g. `@b-repeat user in users`)
+- `b-text` ... `innerText` (e.g. `@b-html text`)
 
 ## License
 
