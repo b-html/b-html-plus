@@ -10,11 +10,17 @@ escapeHtml = (html) ->
 get = (key, context) ->
   key.split(/\./).reduce(((c, key) -> c[key]), context)
 
+getAttr = (element, attr) ->
+  element.attributes.filter((i) -> i.name is attr)[0]
+
+hasAttr = (element, attr) ->
+  element.attributes.some((i) -> i.name is attr)
+
 renderElement = (element, context) ->
   return [element] if typeof element is 'string'
-  if element.attributes.some((i) -> i.name is 'b-repeat')
+  if hasAttr element, 'b-repeat'
     return renderElements element, context
-  if element.attributes.some((i) -> i.name is 'b-if')
+  if hasAttr element, 'b-if'
     attr = element.attributes.filter((i) -> i.name is 'b-if')[0]
     value = get attr.value, context
     return [] unless value
@@ -51,12 +57,11 @@ renderElements = (element, context) ->
   children = element.children.slice()
   attributes = element.attributes.filter (i) ->
     i.name isnt 'b-repeat'
-  attr = element.attributes.filter((i) -> i.name is 'b-repeat')[0]
+  attr = getAttr element, 'b-repeat'
   match = attr.value.match /^\s*(\w+)\s*in\s*(\w+)\s*$/
   throw new Error('b-repeat:' + attr.value) unless match?
-  itemName = match[1]
-  list = context[match[2]]
-  list.reduce (c, item) ->
+  [_, itemName, listName] = match
+  context[listName].reduce (c, item) ->
     context[itemName] = item
     c.concat renderElement({ name, attributes, children }, context)
   , []
