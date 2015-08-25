@@ -17,6 +17,7 @@ describe 'parse', ->
         >.
     '''
     assert.deepEqual elements, [
+      type: 'element'
       name: 'p'
       attributes: [
         name: 'class'
@@ -25,6 +26,7 @@ describe 'parse', ->
       children: [
         'first name:'
       ,
+        type: 'element'
         name: 'span'
         attributes: [
           name: 'b-text'
@@ -37,6 +39,7 @@ describe 'parse', ->
       ,
         '\nlast name:'
       ,
+        type: 'element'
         name: 'span'
         attributes: [
           name: 'b-text'

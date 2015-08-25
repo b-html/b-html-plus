@@ -18,12 +18,20 @@ hasAttr = (element, attr) ->
 
 renderElement = (element, context) ->
   return [element] if typeof element is 'string'
+  switch element.type
+    when 'comment'
+      return element
+    when 'doctype'
+      return element
+    else
+      null # do nothing
   if hasAttr element, 'b-repeat'
     return renderElements element, context
   if hasAttr element, 'b-if'
     attr = element.attributes.filter((i) -> i.name is 'b-if')[0]
     value = get attr.value, context
     return [] unless value
+  type = element.type
   name = element.name
   children = element.children.slice()
   attributes = []
@@ -50,9 +58,10 @@ renderElement = (element, context) ->
   children = children.reduce (c, child) ->
     c.concat renderElement child, context
   , []
-  [{ name, attributes, children }]
+  [{ type, name, attributes, children }]
 
 renderElements = (element, context) ->
+  type = element.type
   name = element.name
   children = element.children.slice()
   attributes = element.attributes.filter (i) ->
@@ -63,7 +72,7 @@ renderElements = (element, context) ->
   [_, itemName, listName] = match
   context[listName].reduce (c, item) ->
     context[itemName] = item
-    c.concat renderElement({ name, attributes, children }, context)
+    c.concat renderElement({ type, name, attributes, children }, context)
   , []
 
 module.exports = (elements, context) ->

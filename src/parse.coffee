@@ -1,45 +1,41 @@
 bHtml = require 'b-html'
 
-###
-NOTE:
-
-String -> Array<Element>
-
-Element: {
-  name: string,
-  attributes: Array<{
-    name: string,
-    value: string
-  }>,
-  children: Array<Element>
-}
-###
-
 format = (node, options) ->
   switch node.type
+    when 'comment'
+      type: node.type
+      value: node.value
+      name: null
+      attributes: []
+      children: []
+    when 'doctype'
+      type: node.type
+      value: node.value
+      name: null
+      attributes: []
+      children: []
     when 'element'
+      type: node.type
       name: node.name
       attributes: node.attributes.map (attr) ->
         name: attr.name
         value: attr.value
-      children: node.children.map((i) -> format i, options).filter (i) -> i?
+      children: node.children.map((i) -> format i, options)
     when 'empty element'
+      type: node.type
       name: node.name
       attributes: node.attributes.map (attr) ->
         name: attr.name
         value: attr.value
-      children: node.children.map((i) -> format i, options).filter (i) -> i?
+      children: node.children.map((i) -> format i, options)
     when 'root element'
-      node.children.map((i) -> format i, options).filter (i) -> i?
+      node.children.map((i) -> format i, options)
     when 'text'
       node.content
     when 'default text'
       node.content
     when 'new line text'
       '\n' + node.content
-    else
-      # TODO: support comment and doctype
-      null
 
 module.exports = (source) ->
   bHtml source, { format }

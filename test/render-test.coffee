@@ -15,6 +15,7 @@ describe 'render', ->
   context 'element', ->
     beforeEach ->
       @parsed = [
+        type: 'element'
         name: 'p'
         attributes: [
           name: 'b-text'
@@ -26,6 +27,7 @@ describe 'render', ->
         user:
           name: 'bouzuya'
       @expected = [
+        type: 'element'
         name: 'p'
         attributes: []
         children: ['bouzuya']
@@ -40,6 +42,7 @@ describe 'render', ->
       @parsed = [
         'text'
       ,
+        type: 'element'
         name: 'p'
         attributes: [
           name: 'b-text'
@@ -53,6 +56,7 @@ describe 'render', ->
       @expected = [
         'text'
       ,
+        type: 'element'
         name: 'p'
         attributes: []
         children: ['bouzuya']
@@ -66,6 +70,7 @@ describe 'render', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'canvas'
           attributes: [
             name: 'b-attr'
@@ -77,6 +82,7 @@ describe 'render', ->
           w: 765
           h: 876
         @expected = [
+          type: 'element'
           name: 'canvas'
           attributes: [
             name: 'width'
@@ -95,6 +101,7 @@ describe 'render', ->
     context 'complex', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'canvas'
           attributes: [
             name: 'b-attr'
@@ -107,6 +114,7 @@ describe 'render', ->
             width: 12
             height: 24
         @expected = [
+          type: 'element'
           name: 'canvas'
           attributes: [
             name: 'width'
@@ -126,6 +134,7 @@ describe 'render', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: [
             name: 'b-html'
@@ -136,6 +145,7 @@ describe 'render', ->
         @context =
           message: '<b>hello</b>'
         @expected = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: ['<b>hello</b>']
@@ -148,9 +158,11 @@ describe 'render', ->
     context 'complex', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: [
+            type: 'element'
             name: 'span'
             attributes: [
               name: 'b-html'
@@ -163,9 +175,11 @@ describe 'render', ->
           user:
             name: '<b>bouzuya</b>'
         @expected = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: [
+            type: 'element'
             name: 'span'
             attributes: []
             children: ['<b>bouzuya</b>']
@@ -180,6 +194,7 @@ describe 'render', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: [
             name: 'b-if'
@@ -198,9 +213,11 @@ describe 'render', ->
     context 'complex', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'ul'
           attributes: []
           children: [
+            type: 'element'
             name: 'li'
             attributes: [
               name: 'b-if'
@@ -230,13 +247,16 @@ describe 'render', ->
             visible: false
           ]
         @expected = [
+          type: 'element'
           name: 'ul'
           attributes: []
           children: [
+            type: 'element'
             name: 'li'
             attributes: []
             children: ['show1']
           ,
+            type: 'element'
             name: 'li'
             attributes: []
             children: ['show2']
@@ -251,6 +271,7 @@ describe 'render', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: [
             name: 'b-repeat'
@@ -267,10 +288,12 @@ describe 'render', ->
             'item2'
           ]
         @expected = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: ['item1']
         ,
+          type: 'element'
           name: 'p'
           attributes: []
           children: ['item2']
@@ -283,15 +306,18 @@ describe 'render', ->
     context 'complex', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'ul'
           attributes: []
           children: [
+            type: 'element'
             name: 'li'
             attributes: [
               name: 'b-repeat'
               value: 'user in users'
             ]
             children: [
+              type: 'element'
               name: 'span'
               attributes: [
                 name: 'b-html'
@@ -308,20 +334,25 @@ describe 'render', ->
             name: 'emanon001'
           ]
         @expected = [
+          type: 'element'
           name: 'ul'
           attributes: []
           children: [
+            type: 'element'
             name: 'li'
             attributes: []
             children: [
+              type: 'element'
               name: 'span'
               attributes: []
               children: ['bouzuya']
             ]
           ,
+            type: 'element'
             name: 'li'
             attributes: []
             children: [
+              type: 'element'
               name: 'span'
               attributes: []
               children: ['emanon001']
@@ -337,6 +368,7 @@ describe 'render', ->
     context 'simple', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: [
             name: 'b-text'
@@ -347,6 +379,7 @@ describe 'render', ->
         @context =
           message: '<b>hello</b>'
         @expected = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: ['&lt;b&gt;hello&lt;/b&gt;']
@@ -359,6 +392,7 @@ describe 'render', ->
     context 'complex', ->
       beforeEach ->
         @parsed = [
+          type: 'element'
           name: 'p'
           attributes: [
             name: 'b-text'
@@ -370,6 +404,7 @@ describe 'render', ->
           user:
             name: '<b>bouzuya</b>'
         @expected = [
+          type: 'element'
           name: 'p'
           attributes: []
           children: ['&lt;b&gt;bouzuya&lt;/b&gt;']
