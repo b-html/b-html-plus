@@ -35,8 +35,15 @@ renderElement = (element, context) ->
   name = element.name
   children = element.children.slice()
   attributes = []
+  events = []
   element.attributes.forEach (attr) ->
     switch attr.name
+      when 'b-on'
+        attr.value.split(/\s*,\s*/).forEach (a) ->
+          [n, v] = a.split /\s*:\s*/
+          events.push
+            name: n
+            value: get v, context
       when 'b-attr'
         attr.value.split(/\s*,\s*/).forEach (a) ->
           [n, v] = a.split /\s*:\s*/
@@ -58,7 +65,7 @@ renderElement = (element, context) ->
   children = children.reduce (c, child) ->
     c.concat renderElement child, context
   , []
-  [{ type, name, attributes, children }]
+  [{ type, name, attributes, children, events }]
 
 renderElements = (element, context) ->
   type = element.type
