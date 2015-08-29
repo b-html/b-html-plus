@@ -30,7 +30,6 @@ html === '<ul><li>bouzuya</li><li>emanon001</li></ul>';
 - `b-attr <attrs>` ... attributes (e.g. `@b-attr width: w, height: h`)
 - `b-html <html>` ... `innerHTML` (e.g. `@b-html html`)
 - `b-if <condition>` ... remove tree if condition is falsy (e.g. `@b-if show`)
-- `b-on <events>` ... event listeners (e.g. `@b-on click: c, dblclick: d`) **It doesn't work in default formatter**
 - `b-repeat <item> in <list>` ... repeat (e.g. `@b-repeat user in users`)
 - `b-text <text>` ... `innerText` (e.g. `@b-html text`)
 
