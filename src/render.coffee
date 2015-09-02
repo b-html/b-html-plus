@@ -43,12 +43,6 @@ renderElement = (element, context) ->
   events = []
   attributes.forEach (attr) ->
     switch attr.name
-      when 'b-on'
-        attr.value.split(/\s*,\s*/).forEach (a) ->
-          [n, v] = a.split /\s*:\s*/
-          events.push
-            name: n
-            value: get v, context
       when 'b-attr'
         attr.value.split(/\s*,\s*/).forEach (a) ->
           [n, v] = a.split /\s*:\s*/
@@ -64,6 +58,12 @@ renderElement = (element, context) ->
       when 'b-if'
         # do nothing
         null
+      when 'b-on'
+        attr.value.split(/\s*,\s*/).forEach (a) ->
+          [n, v] = a.split /\s*:\s*/
+          events.push
+            name: n
+            value: get v, context
       when 'b-text'
         html = get attr.value, context
         text = escapeHtml html
