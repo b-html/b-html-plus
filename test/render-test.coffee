@@ -18,6 +18,22 @@ describe 'render', ->
       rendered = render @parsed, @context
       assert.deepEqual rendered, @expected
 
+  context 'new line text', ->
+    beforeEach ->
+      @parsed = [
+        type: 'new line text'
+        value: 'text'
+      ]
+      @context = {}
+      @expected = [
+        type: 'new line text'
+        value: 'text'
+      ]
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
+
   context 'element', ->
     beforeEach ->
       @parsed = [
