@@ -1,10 +1,10 @@
-parse = require './parse'
+bHtml = require 'b-html'
 render = require './render'
 renderToString = require './render-to-string'
 
 module.exports = (source, { format } = {}) ->
   format ?= renderToString
-  parsed = parse source
+  parsed = bHtml source, format: (nodes) -> nodes
   (context) ->
     rendered = render parsed, context
     format rendered, context
