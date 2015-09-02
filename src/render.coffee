@@ -66,7 +66,10 @@ renderElement = (element, context) ->
       when 'b-text'
         html = get attr.value, context
         text = escapeHtml html
-        children = [text]
+        children = [
+          type: 'text'
+          value: text
+        ]
       else
         attributes.push attr
   children = children.reduce (c, child) ->

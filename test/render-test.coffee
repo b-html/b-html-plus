@@ -52,7 +52,10 @@ describe 'render', ->
         type: 'element'
         name: 'p'
         attributes: []
-        children: ['bouzuya']
+        children: [
+          type: 'text'
+          value: 'bouzuya'
+        ]
         events: []
       ]
 
@@ -82,7 +85,10 @@ describe 'render', ->
         type: 'element'
         name: 'p'
         attributes: []
-        children: ['bouzuya']
+        children: [
+          type: 'text'
+          value: 'bouzuya'
+        ]
         events: []
       ]
 
@@ -283,13 +289,19 @@ describe 'render', ->
             type: 'element'
             name: 'li'
             attributes: []
-            children: ['show1']
+            children: [
+              type: 'text'
+              value: 'show1'
+            ]
             events: []
           ,
             type: 'element'
             name: 'li'
             attributes: []
-            children: ['show2']
+            children: [
+              type: 'text'
+              value: 'show2'
+            ]
             events: []
           ]
           events: []
@@ -421,7 +433,10 @@ describe 'render', ->
           type: 'element'
           name: 'p'
           attributes: []
-          children: ['&lt;b&gt;hello&lt;/b&gt;']
+          children: [
+            type: 'text'
+            value: '&lt;b&gt;hello&lt;/b&gt;'
+          ]
           events: []
         ]
 
@@ -447,7 +462,10 @@ describe 'render', ->
           type: 'element'
           name: 'p'
           attributes: []
-          children: ['&lt;b&gt;bouzuya&lt;/b&gt;']
+          children: [
+            type: 'text'
+            value: '&lt;b&gt;bouzuya&lt;/b&gt;'
+          ]
           events: []
         ]
 
