@@ -58,7 +58,10 @@ renderElement = (element, context) ->
             value: get v, context
       when 'b-html'
         html = get attr.value, context
-        children = [html]
+        children = [
+          type: 'text'
+          value: html
+        ]
       when 'b-if'
         # do nothing
         null

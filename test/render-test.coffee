@@ -182,7 +182,10 @@ describe 'render', ->
           type: 'element'
           name: 'p'
           attributes: []
-          children: ['<b>hello</b>']
+          children: [
+            type: 'text'
+            value: '<b>hello</b>'
+          ]
           events: []
         ]
 
@@ -217,7 +220,10 @@ describe 'render', ->
             type: 'element'
             name: 'span'
             attributes: []
-            children: ['<b>bouzuya</b>']
+            children: [
+              type: 'text'
+              value: '<b>bouzuya</b>'
+            ]
             events: []
           ]
           events: []
@@ -337,13 +343,19 @@ describe 'render', ->
           type: 'element'
           name: 'p'
           attributes: []
-          children: ['item1']
+          children: [
+            type: 'text'
+            value: 'item1'
+          ]
           events: []
         ,
           type: 'element'
           name: 'p'
           attributes: []
-          children: ['item2']
+          children: [
+            type: 'text'
+            value: 'item2'
+          ]
           events: []
         ]
 
@@ -393,7 +405,10 @@ describe 'render', ->
               type: 'element'
               name: 'span'
               attributes: []
-              children: ['bouzuya']
+              children: [
+                type: 'text'
+                value: 'bouzuya'
+              ]
               events: []
             ]
             events: []
@@ -405,7 +420,10 @@ describe 'render', ->
               type: 'element'
               name: 'span'
               attributes: []
-              children: ['emanon001']
+              children: [
+                type: 'text'
+                value: 'emanon001'
+              ]
               events: []
             ]
             events: []
