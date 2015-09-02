@@ -1,10 +1,13 @@
 # b-html-plus
 
-A template language based on [b-html](https://github.com/b-html/b-html).
+A template language based on [b-html][b-html/b-html].
+
+It is also an example for [b-html][b-html/b-html]'s format option.
 
 ## Usage
 
 ```javascript
+import assert from 'assert';
 import bHtml from 'b-html-plus';
 
 let source = `<ul
@@ -12,8 +15,7 @@ let source = `<ul
     @b-repeat user in users
     @b-text user.name
 `;
-let template = bHtml.compile(source);
-
+let template = bHtml(source);
 let context = {
   users: [
     { name: 'bouzuya' },
@@ -21,8 +23,7 @@ let context = {
   ]
 };
 let html = template(context);
-
-html === '<ul><li>bouzuya</li><li>emanon001</li></ul>';
+assert(html === '<ul><li>bouzuya</li><li>emanon001</li></ul>');
 ```
 
 ## Syntax
@@ -44,3 +45,5 @@ html === '<ul><li>bouzuya</li><li>emanon001</li></ul>';
 [user]: https://github.com/bouzuya
 [email]: mailto:m@bouzuya.net
 [url]: http://bouzuya.net
+
+[b-html/b-html]: https://github.com/b-html/b-html
