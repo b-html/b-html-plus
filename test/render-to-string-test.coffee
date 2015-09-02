@@ -15,7 +15,10 @@ describe 'renderToString', ->
           type: 'element'
           name: 'span'
           attributes: []
-          children: ['bouzuya']
+          children: [
+            type: 'text'
+            value: 'bouzuya'
+          ]
         ]
       ,
         type: 'element'
@@ -25,7 +28,10 @@ describe 'renderToString', ->
           type: 'element'
           name: 'span'
           attributes: []
-          children: ['emanon001']
+          children: [
+            type: 'text'
+            value: 'emanon001'
+          ]
         ]
       ]
     ]
