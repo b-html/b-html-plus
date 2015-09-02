@@ -31,6 +31,7 @@ describe 'render', ->
         name: 'p'
         attributes: []
         children: ['bouzuya']
+        events: []
       ]
 
     it 'works', ->
@@ -60,6 +61,7 @@ describe 'render', ->
         name: 'p'
         attributes: []
         children: ['bouzuya']
+        events: []
       ]
 
     it 'works', ->
@@ -92,6 +94,7 @@ describe 'render', ->
             value: '876'
           ]
           children: []
+          events: []
         ]
 
       it 'works', ->
@@ -124,6 +127,7 @@ describe 'render', ->
             value: '24'
           ]
           children: []
+          events: []
         ]
 
       it 'works', ->
@@ -149,6 +153,7 @@ describe 'render', ->
           name: 'p'
           attributes: []
           children: ['<b>hello</b>']
+          events: []
         ]
 
       it 'works', ->
@@ -183,7 +188,9 @@ describe 'render', ->
             name: 'span'
             attributes: []
             children: ['<b>bouzuya</b>']
+            events: []
           ]
+          events: []
         ]
 
       it 'works', ->
@@ -255,12 +262,15 @@ describe 'render', ->
             name: 'li'
             attributes: []
             children: ['show1']
+            events: []
           ,
             type: 'element'
             name: 'li'
             attributes: []
             children: ['show2']
+            events: []
           ]
+          events: []
         ]
 
       it 'works', ->
@@ -292,11 +302,13 @@ describe 'render', ->
           name: 'p'
           attributes: []
           children: ['item1']
+          events: []
         ,
           type: 'element'
           name: 'p'
           attributes: []
           children: ['item2']
+          events: []
         ]
 
       it 'works', ->
@@ -346,7 +358,9 @@ describe 'render', ->
               name: 'span'
               attributes: []
               children: ['bouzuya']
+              events: []
             ]
+            events: []
           ,
             type: 'element'
             name: 'li'
@@ -356,8 +370,11 @@ describe 'render', ->
               name: 'span'
               attributes: []
               children: ['emanon001']
+              events: []
             ]
+            events: []
           ]
+          events: []
         ]
 
       it 'works', ->
@@ -383,6 +400,7 @@ describe 'render', ->
           name: 'p'
           attributes: []
           children: ['&lt;b&gt;hello&lt;/b&gt;']
+          events: []
         ]
 
       it 'works', ->
@@ -408,6 +426,7 @@ describe 'render', ->
           name: 'p'
           attributes: []
           children: ['&lt;b&gt;bouzuya&lt;/b&gt;']
+          events: []
         ]
 
       it 'works', ->
