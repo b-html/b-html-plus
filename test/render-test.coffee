@@ -4,9 +4,15 @@ render = require './render'
 describe 'render', ->
   context 'text', ->
     beforeEach ->
-      @parsed = ['text']
+      @parsed = [
+        type: 'text'
+        value: 'text'
+      ]
       @context = {}
-      @expected = ['text']
+      @expected = [
+        type: 'text'
+        value: 'text'
+      ]
 
     it 'works', ->
       rendered = render @parsed, @context

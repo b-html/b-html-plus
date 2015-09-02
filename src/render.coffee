@@ -17,6 +17,10 @@ hasAttr = (element, attr) ->
   element.attributes.some((i) -> i.name is attr)
 
 renderElement = (element, context) ->
+  switch element.type
+    when 'text'
+      { type, value } = element
+      return [{ type, value }]
   return [element] if typeof element is 'string'
   switch element.type
     when 'comment'
