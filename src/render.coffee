@@ -38,12 +38,10 @@ renderElement = (element, context) ->
     attr = element.attributes.filter((i) -> i.name is 'b-if')[0]
     value = get attr.value, context
     return [] unless value
-  type = element.type
-  name = element.name
-  children = element.children.slice()
-  attributes = []
+  { type, name, children, attributes } = element
+  attrs = []
   events = []
-  element.attributes.forEach (attr) ->
+  attributes.forEach (attr) ->
     switch attr.name
       when 'b-on'
         attr.value.split(/\s*,\s*/).forEach (a) ->
@@ -54,7 +52,7 @@ renderElement = (element, context) ->
       when 'b-attr'
         attr.value.split(/\s*,\s*/).forEach (a) ->
           [n, v] = a.split /\s*:\s*/
-          attributes.push
+          attrs.push
             name: n
             value: get v, context
       when 'b-html'
@@ -74,17 +72,15 @@ renderElement = (element, context) ->
           value: text
         ]
       else
-        attributes.push attr
+        attrs.push { name: attr.name, value: attr.value }
   children = children.reduce (c, child) ->
     c.concat renderElement child, context
   , []
-  [{ type, name, attributes, children, events }]
+  [{ type, name, attributes: attrs, children, events }]
 
 renderElements = (element, context) ->
-  type = element.type
-  name = element.name
-  children = element.children.slice()
-  attributes = element.attributes.filter (i) ->
+  { type, name, children, attributes } = element
+  attrs = attributes.filter (i) ->
     i.name isnt 'b-repeat'
   attr = getAttr element, 'b-repeat'
   match = attr.value.match /^\s*(\w+)\s*in\s*(\w+)\s*$/
@@ -92,7 +88,7 @@ renderElements = (element, context) ->
   [_, itemName, listName] = match
   context[listName].reduce (c, item) ->
     context[itemName] = item
-    c.concat renderElement({ type, name, attributes, children }, context)
+    c.concat renderElement { type, name, attributes: attrs, children }, context
   , []
 
 module.exports = (elements, context) ->
