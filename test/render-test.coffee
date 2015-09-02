@@ -2,6 +2,38 @@ assert = require 'power-assert'
 render = require './render'
 
 describe 'render', ->
+  context 'comment', ->
+    beforeEach ->
+      @parsed = [
+        type: 'comment'
+        value: 'hoge'
+      ]
+      @context = {}
+      @expected = [
+        type: 'comment'
+        value: 'hoge'
+      ]
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
+
+  context 'doctype', ->
+    beforeEach ->
+      @parsed = [
+        type: 'doctype'
+        value: 'html'
+      ]
+      @context = {}
+      @expected = [
+        type: 'doctype'
+        value: 'html'
+      ]
+
+    it 'works', ->
+      rendered = render @parsed, @context
+      assert.deepEqual rendered, @expected
+
   context 'text', ->
     beforeEach ->
       @parsed = [

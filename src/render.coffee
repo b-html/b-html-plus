@@ -18,17 +18,18 @@ hasAttr = (element, attr) ->
 
 renderElement = (element, context) ->
   switch element.type
+    when 'comment'
+      { type, value } = element
+      return [{ type, value }]
+    when 'doctype'
+      { type, value } = element
+      return [{ type, value }]
     when 'text'
       { type, value } = element
       return [{ type, value }]
     when 'new line text'
       { type, value } = element
       return [{ type, value }]
-  switch element.type
-    when 'comment'
-      return element
-    when 'doctype'
-      return element
     else
       null # do nothing
   if hasAttr element, 'b-repeat'
