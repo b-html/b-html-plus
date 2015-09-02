@@ -66,7 +66,8 @@ describe 'render', ->
   context 'elements', ->
     beforeEach ->
       @parsed = [
-        'text'
+        type: 'text'
+        value: 'text'
       ,
         type: 'element'
         name: 'p'
@@ -80,7 +81,8 @@ describe 'render', ->
         user:
           name: 'bouzuya'
       @expected = [
-        'text'
+        type: 'text'
+        value: 'text'
       ,
         type: 'element'
         name: 'p'

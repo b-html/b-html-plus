@@ -24,7 +24,6 @@ renderElement = (element, context) ->
     when 'new line text'
       { type, value } = element
       return [{ type, value }]
-  return [element] if typeof element is 'string'
   switch element.type
     when 'comment'
       return element
