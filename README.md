@@ -34,6 +34,10 @@ assert(html === '<ul><li>bouzuya</li><li>emanon001</li></ul>');
 - `b-repeat <item> in <list>` ... repeat (e.g. `@b-repeat user in users`)
 - `b-text <text>` ... `innerText` (e.g. `@b-html text`)
 
+## Badges
+
+[![Circle CI](https://circleci.com/gh/b-html/b-html-plus.svg?style=svg)](https://circleci.com/gh/b-html/b-html-plus)
+
 ## License
 
 [MIT](LICENSE)
